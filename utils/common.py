@@ -373,7 +373,7 @@ def preprocess_kernel(strKernel, objectVariables):
 	return strKernel
 # end
 
-@cupy.util.memoize(for_each_device=True)
+@cupy.memoize(for_each_device=True)
 def launch_kernel(strFunction, strKernel):
 	return cupy.cuda.compile_with_cache(strKernel, tuple([ '-I ' + os.environ['CUDA_HOME'], '-I ' + os.environ['CUDA_HOME'] + '/include' ])).get_function(strFunction)
 # end
